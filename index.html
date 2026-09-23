@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071628">
+  <title>مختبر العضلة الافتراضي | الصف العاشر</title>
+  <meta name="description" content="محاكاة تفاعلية لاستقصاء أثر شدة المنبه وتكراره في انقباض العضلات والتعب العضلي.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='15' width='64' height='64' fill='%23071628'/%3E%3Cpath d='M15 38c7-2 8-15 14-13 4 1 2 7 6 8 5 2 7-12 14-8 5 3 1 16-7 20-11 6-21 2-27-7Z' fill='%23ff5964' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <style>
+    :root{--navy:#071628;--panel:#10253d;--panel2:#17324f;--ink:#f6fbff;--muted:#a9bed0;--red:#ff5964;--cyan:#36d6d0;--gold:#ffd166;--good:#52d681;--line:#29445f}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 80% -10%,#153f63 0,transparent 34%),var(--navy);color:var(--ink);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+    button,input{font:inherit} button{cursor:pointer}.app{max-width:1200px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:16px}.eyebrow{color:var(--cyan);font-size:.85rem;font-weight:700;letter-spacing:.04em}.top h1{font-size:clamp(1.45rem,3vw,2.35rem);margin:.25rem 0}.objective{color:var(--muted);font-size:.98rem}.badge{border:1px solid var(--line);background:#0d2238;padding:10px 14px;border-radius:14px;white-space:nowrap}
+    .progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.step{border:1px solid var(--line);background:#0d2035;color:var(--muted);padding:10px;border-radius:12px}.step.active{background:var(--cyan);color:#032124;border-color:var(--cyan);font-weight:700}.step.done{border-color:var(--good);color:var(--good)}
+    .grid{display:grid;grid-template-columns:1.35fr .8fr;gap:16px}.card{background:linear-gradient(145deg,var(--panel),#0b1e32);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 12px 32px #0005}.card h2,.card h3{margin-top:0}.lab{min-height:585px}.instructions{background:#0a1c2f;border-right:4px solid var(--gold);padding:11px 13px;border-radius:10px;color:#dce9f2;margin-bottom:14px}
+    .muscle-stage{position:relative;height:230px;border-radius:18px;background:linear-gradient(180deg,#081522,#102a43);overflow:hidden;border:1px solid #27445f;display:flex;align-items:center;justify-content:center}.bone{width:92px;height:28px;background:linear-gradient(#e4edf3,#9fb0bd);border-radius:18px;box-shadow:inset 0 0 0 3px #738a9a}.fiber{height:84px;width:250px;background:repeating-linear-gradient(90deg,#e74555 0 15px,#bd263a 15px 28px);border-radius:50% 28% 28% 50%;transition:.35s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 -15px 25px #7f1528,0 8px 35px #ff596433;position:relative}.fiber:before,.fiber:after{content:"";position:absolute;top:31px;width:46px;height:20px;background:#ece7d6}.fiber:before{right:-34px;clip-path:polygon(0 0,100% 50%,0 100%)}.fiber:after{left:-34px;clip-path:polygon(100% 0,0 50%,100% 100%)}.stage-row{display:flex;align-items:center;gap:28px}.pulse{position:absolute;top:22px;right:25px;border:1px solid var(--cyan);color:var(--cyan);padding:7px 10px;border-radius:30px;font-size:.85rem}.metric{position:absolute;bottom:15px;display:flex;gap:24px;color:var(--muted)}.metric b{color:var(--ink);font-size:1.3rem}.flash{animation:flash .28s}@keyframes flash{50%{filter:brightness(1.8)}}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}.control{background:#0b1e32;border:1px solid var(--line);padding:12px;border-radius:14px}.control label{display:flex;justify-content:space-between;margin-bottom:10px}.control output{color:var(--gold);font-weight:700}input[type=range]{width:100%;accent-color:var(--red)}.actions{display:flex;gap:10px;margin-top:15px}.primary,.secondary{border:0;border-radius:12px;padding:12px 16px;font-weight:700}.primary{background:var(--red);color:white}.primary:hover{background:#ff7079}.secondary{background:#183653;color:var(--ink);border:1px solid #365873}.primary:disabled{opacity:.45;cursor:not-allowed}
+    .data{width:100%;border-collapse:collapse;margin-top:10px}.data th,.data td{border-bottom:1px solid var(--line);padding:9px;text-align:center}.data th{color:var(--cyan);font-size:.88rem}.empty{color:var(--muted);text-align:center;padding:18px}.hypothesis textarea{width:100%;min-height:70px;border-radius:12px;background:#081a2c;color:white;border:1px solid var(--line);padding:10px;resize:vertical}.notice{margin-top:10px;padding:10px;border-radius:10px;display:none}.notice.show{display:block}.notice.good{background:#123e2b;color:#aaf0c2}.notice.warn{background:#4b3210;color:#ffe3a0}
+    .tabs{display:flex;gap:7px;margin-bottom:12px}.tab{flex:1;background:#0c2035;border:1px solid var(--line);color:var(--muted);padding:9px;border-radius:10px}.tab.on{background:var(--panel2);color:white;border-color:var(--cyan)}.type-panel{min-height:190px}.type-icon{font-size:2.6rem}.type-panel ul{padding-right:18px;color:#dce7ef}.challenge{border-top:1px solid var(--line);margin-top:15px;padding-top:15px}.q{margin-bottom:10px}.choice{display:block;width:100%;text-align:right;margin:6px 0;padding:9px;background:#0c2035;color:white;border:1px solid var(--line);border-radius:9px}.choice.correct{background:#174a33;border-color:var(--good)}.choice.wrong{background:#52232a;border-color:var(--red)}
+    .fatigue{margin-top:15px;padding:14px;background:#0a1d30;border-radius:14px}.bar{height:13px;background:#06111d;border-radius:8px;overflow:hidden;margin:8px 0}.fill{height:100%;width:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--good));transition:.25s}.tap{width:100%;padding:13px;border:none;background:var(--cyan);color:#032124;border-radius:11px;font-weight:bold}
+    .structure{margin-top:16px}.hierarchy{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:stretch}.level{background:#0b1f34;border:1px solid var(--line);border-radius:13px;padding:12px 8px;color:var(--ink);min-height:92px;position:relative}.level:not(:last-child):after{content:"←";position:absolute;left:-11px;top:34px;color:var(--cyan);font-size:1.25rem;z-index:2}.level b{display:block;color:var(--gold);margin-bottom:6px}.level small{color:var(--muted);line-height:1.45}.zoom-note{margin:12px 0 0;color:#c7d7e3;font-size:.93rem}
+    .mechanism{margin-top:16px;display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.sarc-stage{background:#081725;border:1px solid var(--line);border-radius:16px;padding:26px 16px 18px;overflow:hidden}.sarc-title{text-align:center;color:var(--cyan);margin-bottom:14px}.sarcomere{--c:0;width:calc(96% - (var(--c) * 28%));height:150px;margin:auto;position:relative;border-left:6px solid #f6fbff;border-right:6px solid #f6fbff;transition:width .45s ease;background:linear-gradient(90deg,#ff596415 0 22%,#36d6d012 22% 78%,#ff596415 78%)}.sarcomere:before,.sarcomere:after{content:"خط Z";position:absolute;top:-24px;color:#fff;font-size:.76rem;white-space:nowrap}.sarcomere:before{right:-17px}.sarcomere:after{left:-17px}.myosin{position:absolute;right:27%;left:27%;top:68px;height:14px;border-radius:9px;background:var(--gold);box-shadow:0 0 18px #ffd16655}.myosin:before{content:"الميوسين";position:absolute;top:20px;right:34%;font-size:.8rem;color:var(--gold)}.actin{position:absolute;top:43px;height:7px;width:43%;background:repeating-linear-gradient(90deg,var(--red) 0 8px,#ff8a91 8px 12px);transition:width .45s}.actin.r{right:0}.actin.l{left:0}.actin.r:after{content:"الأكتين";position:absolute;top:-23px;right:18px;color:#ff9da4;font-size:.8rem}.bridge{position:absolute;top:55px;right:35%;left:35%;height:38px;border-top:3px dashed var(--cyan);border-bottom:3px dashed var(--cyan);opacity:calc(.15 + var(--c));transition:opacity .3s}.sarc-metrics{display:flex;justify-content:center;gap:30px;margin-top:13px;color:var(--muted)}.sarc-metrics b{color:white}.mech-controls{background:#0a1d30;border-radius:14px;padding:14px}.switches{display:grid;gap:9px;margin:12px 0}.check{display:flex;align-items:center;gap:9px;background:#0e2942;padding:10px;border-radius:10px}.check input{width:20px;height:20px;accent-color:var(--cyan)}.conclusion{margin-top:10px;padding:11px;border-radius:10px;background:#102b43;color:#dceaf2;min-height:68px}.sequence{margin:12px 0 0;padding-right:20px;color:#dce7ef}.sequence li{margin-bottom:8px}.footer{text-align:center;color:#8099ad;margin:16px 0 0;font-size:.82rem}
+    @media(max-width:850px){.grid,.mechanism{grid-template-columns:1fr}.top{align-items:flex-start}.progress{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr}.muscle-stage{height:205px}.fiber{width:160px}.bone{width:52px}.metric{gap:12px;font-size:.8rem}.app{padding:12px}.badge{display:none}.hierarchy{grid-template-columns:1fr 1fr}.level:not(:last-child):after{content:"↓";left:8px;top:auto;bottom:-15px}.sarcomere{height:135px}.sarc-metrics{gap:12px;font-size:.85rem}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="top"><div><div class="eyebrow">مختبر العلوم المتكاملة • الصف العاشر</div><h1>مختبر العضلة الافتراضي</h1><div class="objective">استقصِ كيف تؤثر شدة المنبّه وتكراره في قوة الانقباض والتعب العضلي.</div></div><div class="badge">⏱ زمن مقترح: 25 دقيقة</div></header>
+  <nav class="progress" aria-label="خطوات المعمل"><button class="step active" data-go="0">1 توقع</button><button class="step" data-go="1">2 جرّب</button><button class="step" data-go="2">3 حلّل</button><button class="step" data-go="3">4 استنتج</button></nav>
+  <section class="grid">
+    <div class="card lab">
+      <h2>محطة الاستقصاء: انقباض العضلة الهيكلية</h2>
+      <div class="instructions" id="instruction">اكتب فرضيتك أولًا: ماذا تتوقع أن يحدث لقوة الانقباض عندما تزداد شدة المنبّه؟</div>
+      <div class="hypothesis"><textarea id="hyp" aria-label="الفرضية" placeholder="إذا زادت شدة المنبّه فإن... لأن..."></textarea></div>
+      <div class="muscle-stage" aria-label="محاكاة عضلة متصلة بعظمتين">
+        <span class="pulse" id="pulse">الإشارة العصبية: جاهزة</span>
+        <div class="stage-row"><div class="bone"></div><div class="fiber" id="fiber"></div><div class="bone"></div></div>
+        <div class="metric"><span>قوة الانقباض <b id="force">0</b>%</span><span>طول العضلة <b id="length">100</b>%</span></div>
+      </div>
+      <div class="controls">
+        <div class="control"><label for="intensity">شدة المنبّه <output id="iOut">40%</output></label><input id="intensity" type="range" min="10" max="100" value="40" step="10"></div>
+        <div class="control"><label for="frequency">تكرار المنبّه <output id="fOut">2 نبضة/ث</output></label><input id="frequency" type="range" min="1" max="10" value="2"></div>
+      </div>
+      <div class="actions"><button id="stimulate" class="primary">⚡ طبّق المنبّه وسجّل</button><button id="reset" class="secondary">إعادة التجربة</button></div>
+      <div id="notice" class="notice"></div>
+      <div class="fatigue">
+        <strong>اختبار التعب العضلي</strong> — اضغط «ابدأ» ثم كرّر الانقباض 10 مرات، وراقب الطاقة.
+        <div class="bar" aria-label="مستوى طاقة العضلة"><div class="fill" id="energy"></div></div>
+        <button class="tap" id="tap">ابدأ اختبار التعب</button>
+      </div>
+    </div>
+    <aside>
+      <div class="card">
+        <h3>سجل البيانات</h3>
+        <table class="data"><thead><tr><th>الشدة</th><th>التكرار</th><th>القوة</th></tr></thead><tbody id="rows"><tr><td colspan="3" class="empty">نفّذ ثلاث محاولات مختلفة</td></tr></tbody></table>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>قارن أنواع العضلات</h3>
+        <div class="tabs"><button class="tab on" data-type="skeletal">هيكلية</button><button class="tab" data-type="smooth">ملساء</button><button class="tab" data-type="cardiac">قلبية</button></div>
+        <div class="type-panel" id="typePanel"></div>
+        <div class="challenge">
+          <div class="q"><strong>تحقق سريع:</strong> أي عضلة تعمل إراديًا غالبًا؟</div>
+          <button class="choice" data-answer="0">عضلة جدار الأمعاء</button><button class="choice" data-answer="1">العضلة ذات الرأسين</button><button class="choice" data-answer="0">عضلة القلب</button>
+        </div>
+      </div>
+    </aside>
+  </section>
+  <section class="card structure">
+    <h2>من العضلة إلى خيوط البروتين: رحلة التكبير</h2>
+    <div class="instructions">كل مستوى يوجد داخل المستوى السابق؛ تتبّع التركيب من الأكبر إلى الأصغر.</div>
+    <div class="hierarchy" aria-label="مستويات تركيب العضلة من الأكبر إلى الأصغر">
+      <div class="level"><b>1 العضلة</b><small>عضو كامل تحيط به أنسجة ضامة.</small></div>
+      <div class="level"><b>2 الحُزمة العضلية</b><small>مجموعة من الألياف العضلية.</small></div>
+      <div class="level"><b>3 الليفة العضلية</b><small>خلية عضلية طويلة متعددة الأنوية.</small></div>
+      <div class="level"><b>4 اللُّييف العضلي</b><small>تراكيب دقيقة تمتد داخل الليفة.</small></div>
+      <div class="level"><b>5 القطعة العضلية</b><small>وحدة الانقباض الواقعة بين خطّي Z.</small></div>
+      <div class="level"><b>6 الخيوط البروتينية</b><small>أكتين رفيع وميوسين سميك.</small></div>
+    </div>
+    <p class="zoom-note">تنبيه علمي: القطعة العضلية لا تتكوّن من لُييفات؛ بل اللُّييف العضلي يتكوّن من قطع عضلية متتابعة.</p>
+  </section>
+  <section class="mechanism">
+    <div class="card">
+      <h2>تجربة آلية الانقباض: نموذج الخيوط المنزلقة</h2>
+      <div class="sarc-stage">
+        <div class="sarc-title">قطعة عضلية واحدة بين خطّي Z</div>
+        <div class="sarcomere" id="sarcomere" style="width:96%"><div class="actin r"></div><div class="actin l"></div><div class="myosin"></div><div class="bridge"></div></div>
+        <div class="sarc-metrics"><span>طول القطعة: <b id="sarcLength">100%</b></span><span>التداخل: <b id="overlap">منخفض</b></span></div>
+      </div>
+      <label for="contract" style="display:flex;justify-content:space-between;margin-top:15px"><strong>درجة التنبيه العصبي</strong><output id="cOut">0%</output></label>
+      <input id="contract" type="range" min="0" max="100" value="0" step="10" style="width:100%;accent-color:var(--cyan)">
+    </div>
+    <div class="card mech-controls">
+      <h3>شروط حدوث الانقباض</h3>
+      <div class="switches">
+        <label class="check"><input id="calcium" type="checkbox" checked> أيونات الكالسيوم Ca²⁺ متاحة</label>
+        <label class="check"><input id="atp" type="checkbox" checked> جزيئات ATP متاحة</label>
+      </div>
+      <button class="primary" id="contractBtn" style="width:100%">شغّل الانقباض</button>
+      <div class="conclusion" id="mechResult">فعّل الشروط، ثم غيّر درجة التنبيه وشغّل الانقباض.</div>
+      <ol class="sequence">
+        <li>تصل الإشارة العصبية وتتحرر أيونات الكالسيوم.</li>
+        <li>تنكشف مواقع الارتباط على الأكتين، وترتبط بها رؤوس الميوسين.</li>
+        <li>يوفّر ATP الطاقة لدورة الجسور العرضية.</li>
+        <li>ينزلق الأكتين للداخل فتتقارب خطوط Z وتقصر القطعة.</li>
+      </ol>
+    </div>
+  </section>
+  <p class="footer">المحاكاة نموذج تعليمي مبسّط؛ القيم نسبية وليست قياسات سريرية.</p>
+</main>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const intensity=$('#intensity'), frequency=$('#frequency'), fiber=$('#fiber'), rows=$('#rows'), notice=$('#notice');
+let trials=[], energy=100, taps=0, fatigueOn=false;
+function forceValue(){const i=+intensity.value,f=+frequency.value;return Math.min(100,Math.round((i*.72)+(f*3.1)))}
+function update(){ $('#iOut').textContent=intensity.value+'%'; $('#fOut').textContent=frequency.value+' نبضة/ث'; }
+intensity.oninput=frequency.oninput=update;
+$('#stimulate').onclick=()=>{if(!$('#hyp').value.trim()){show('اكتب فرضية قصيرة قبل تنفيذ التجربة.','warn');return}const f=forceValue(),len=Math.max(68,100-Math.round(f*.27));fiber.style.width=(250-(f*1.05))+'px';fiber.style.height=(84+(f*.28))+'px';fiber.classList.remove('flash');void fiber.offsetWidth;fiber.classList.add('flash');$('#force').textContent=f;$('#length').textContent=len;$('#pulse').textContent='⚡ '+frequency.value+' نبضة/ث';trials.push([intensity.value,frequency.value,f]);if(trials.length>5)trials.shift();renderRows();show(trials.length<3?'غيّر المتغيرات ونفّذ محاولة أخرى.':'بيانات كافية! ابحث عن نمط بين الشدة والقوة.','good');setStep(trials.length>=3?2:1)};
+function renderRows(){rows.innerHTML=trials.map((r,i)=>`<tr><td>${r[0]}%</td><td>${r[1]}</td><td>${r[2]}%</td></tr>`).join('')}
+function show(t,k){notice.textContent=t;notice.className='notice show '+k}
+$('#reset').onclick=()=>{trials=[];energy=100;taps=0;fatigueOn=false;rows.innerHTML='<tr><td colspan="3" class="empty">نفّذ ثلاث محاولات مختلفة</td></tr>';fiber.style.width='250px';fiber.style.height='84px';$('#force').textContent=0;$('#length').textContent=100;$('#energy').style.width='100%';$('#tap').textContent='ابدأ اختبار التعب';notice.className='notice';setStep(0)};
+$('#tap').onclick=()=>{if(!fatigueOn){fatigueOn=true;$('#tap').textContent='انقباض! (0/10)';return}if(taps<10){taps++;energy=Math.max(20,energy-(5+taps*.9));$('#energy').style.width=energy+'%';$('#tap').textContent=`انقباض! (${taps}/10)`;fiber.classList.remove('flash');void fiber.offsetWidth;fiber.classList.add('flash')}if(taps===10){fatigueOn=false;$('#tap').textContent='اكتمل — أعد الاختبار';show('الاستنتاج: مع تكرار الانقباض انخفضت الطاقة المتاحة، فظهرت علامة التعب. بعد الراحة تستعيد العضلة قدرتها تدريجيًا.','good');setStep(3);taps=0;setTimeout(()=>{$('#energy').style.width='100%';energy=100},2500)}};
+const types={skeletal:['💪','العضلة الهيكلية',['مخططة وطويلة الألياف','إرادية غالبًا','تحرّك العظام وتتعب نسبيًا']],smooth:['〰️','العضلة الملساء',['غير مخططة ومغزلية','لا إرادية','في جدران الأمعاء والأوعية']],cardiac:['🫀','العضلة القلبية',['مخططة ومتفرعة','لا إرادية ومنتظمة','توجد في القلب فقط ومقاومة للتعب']]};
+function typeView(k){const [ic,n,items]=types[k];$('#typePanel').innerHTML=`<div class="type-icon">${ic}</div><strong>${n}</strong><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>`}typeView('skeletal');
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');typeView(b.dataset.type)});
+$$('.choice').forEach(b=>b.onclick=()=>{if($$('.choice').some(x=>x.classList.contains('correct')))return;b.classList.add(b.dataset.answer==='1'?'correct':'wrong');if(b.dataset.answer==='1')show('إجابة صحيحة: العضلة الهيكلية ترتبط بالعظام ويمكن التحكم فيها إراديًا غالبًا.','good');else show('راجع المقارنة: العضلات الملساء والقلبية لا إرادية.','warn')});
+const contract=$('#contract'), sarcomere=$('#sarcomere'), calcium=$('#calcium'), atp=$('#atp');
+contract.oninput=()=>{$('#cOut').textContent=contract.value+'%'};
+$('#contractBtn').onclick=()=>{const requested=+contract.value;if(!calcium.checked&&!atp.checked){$('#mechResult').textContent='لم يحدث انقباض: لا يتوافر الكالسيوم لكشف مواقع الارتباط ولا ATP لإتمام دورة الجسور العرضية.';return}if(!calcium.checked){$('#mechResult').textContent='لم يحدث انقباض: يلزم Ca²⁺ لكشف مواقع ارتباط الميوسين على الأكتين.';return}if(!atp.checked){$('#mechResult').textContent='تتعطل دورة الجسور العرضية: يلزم ATP لفصل رأس الميوسين وإعادة تهيئته لدورة جديدة.';return}if(requested===0){$('#mechResult').textContent='ارفع درجة التنبيه لتبدأ المحاكاة.';return}const c=requested/100;sarcomere.style.setProperty('--c',c);$('#sarcLength').textContent=Math.round(100-c*28)+'%';$('#overlap').textContent=c<.35?'منخفض':c<.75?'متوسط':'مرتفع';$('#mechResult').textContent='انزلقت خيوط الأكتين فوق الميوسين، فزاد التداخل وتقارب خطّا Z وقصرت القطعة العضلية، بينما بقي طول الخيوط نفسها ثابتًا.'};
+$('#contractBtn').addEventListener('click',()=>{if(calcium.checked&&atp.checked&&+contract.value>0)sarcomere.style.width=(96-(+contract.value/100)*28)+'%'});
+[calcium,atp].forEach(x=>x.onchange=()=>{if(!x.checked){sarcomere.style.setProperty('--c',0);sarcomere.style.width='96%';$('#sarcLength').textContent='100%';$('#overlap').textContent='منخفض'}});
+const instructions=['اكتب فرضيتك أولًا: ماذا تتوقع أن يحدث لقوة الانقباض عندما تزداد شدة المنبّه؟','غيّر شدة المنبّه أو تكراره، ثم طبّق المنبّه وسجّل ثلاث محاولات.','قارن نتائجك: ما المتغير الذي رفع قوة الانقباض؟ هل ظهر نمط ثابت؟','اختبر التعب العضلي، ثم صغ استنتاجًا يربط التكرار بالطاقة والأداء.'];
+function setStep(n){$$('.step').forEach((s,i)=>{s.classList.toggle('active',i===n);s.classList.toggle('done',i<n)});$('#instruction').textContent=instructions[n]}
+$$('.step').forEach(b=>b.onclick=()=>setStep(+b.dataset.go));update();
+</script>
+</body></html>
