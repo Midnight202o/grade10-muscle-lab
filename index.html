@@ -20,7 +20,8 @@
     .fatigue{margin-top:15px;padding:14px;background:#0a1d30;border-radius:14px}.bar{height:13px;background:#06111d;border-radius:8px;overflow:hidden;margin:8px 0}.fill{height:100%;width:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--good));transition:.25s}.tap{width:100%;padding:13px;border:none;background:var(--cyan);color:#032124;border-radius:11px;font-weight:bold}
     .structure{margin-top:16px}.hierarchy{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:stretch}.level{background:#0b1f34;border:1px solid var(--line);border-radius:13px;padding:12px 8px;color:var(--ink);min-height:92px;position:relative}.level:not(:last-child):after{content:"←";position:absolute;left:-11px;top:34px;color:var(--cyan);font-size:1.25rem;z-index:2}.level b{display:block;color:var(--gold);margin-bottom:6px}.level small{color:var(--muted);line-height:1.45}.zoom-note{margin:12px 0 0;color:#c7d7e3;font-size:.93rem}
     .mechanism{margin-top:16px;display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.sarc-stage{background:#081725;border:1px solid var(--line);border-radius:16px;padding:26px 16px 18px;overflow:hidden}.sarc-title{text-align:center;color:var(--cyan);margin-bottom:14px}.sarcomere{--c:0;width:calc(96% - (var(--c) * 28%));height:150px;margin:auto;position:relative;border-left:6px solid #f6fbff;border-right:6px solid #f6fbff;transition:width .45s ease;background:linear-gradient(90deg,#ff596415 0 22%,#36d6d012 22% 78%,#ff596415 78%)}.sarcomere:before,.sarcomere:after{content:"خط Z";position:absolute;top:-24px;color:#fff;font-size:.76rem;white-space:nowrap}.sarcomere:before{right:-17px}.sarcomere:after{left:-17px}.myosin{position:absolute;right:27%;left:27%;top:68px;height:14px;border-radius:9px;background:var(--gold);box-shadow:0 0 18px #ffd16655}.myosin:before{content:"الميوسين";position:absolute;top:20px;right:34%;font-size:.8rem;color:var(--gold)}.actin{position:absolute;top:43px;height:7px;width:43%;background:repeating-linear-gradient(90deg,var(--red) 0 8px,#ff8a91 8px 12px);transition:width .45s}.actin.r{right:0}.actin.l{left:0}.actin.r:after{content:"الأكتين";position:absolute;top:-23px;right:18px;color:#ff9da4;font-size:.8rem}.bridge{position:absolute;top:55px;right:35%;left:35%;height:38px;border-top:3px dashed var(--cyan);border-bottom:3px dashed var(--cyan);opacity:calc(.15 + var(--c));transition:opacity .3s}.sarc-metrics{display:flex;justify-content:center;gap:30px;margin-top:13px;color:var(--muted)}.sarc-metrics b{color:white}.mech-controls{background:#0a1d30;border-radius:14px;padding:14px}.switches{display:grid;gap:9px;margin:12px 0}.check{display:flex;align-items:center;gap:9px;background:#0e2942;padding:10px;border-radius:10px}.check input{width:20px;height:20px;accent-color:var(--cyan)}.conclusion{margin-top:10px;padding:11px;border-radius:10px;background:#102b43;color:#dceaf2;min-height:68px}.sequence{margin:12px 0 0;padding-right:20px;color:#dce7ef}.sequence li{margin-bottom:8px}.footer{text-align:center;color:#8099ad;margin:16px 0 0;font-size:.82rem}
-    @media(max-width:850px){.grid,.mechanism{grid-template-columns:1fr}.top{align-items:flex-start}.progress{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr}.muscle-stage{height:205px}.fiber{width:160px}.bone{width:52px}.metric{gap:12px;font-size:.8rem}.app{padding:12px}.badge{display:none}.hierarchy{grid-template-columns:1fr 1fr}.level:not(:last-child):after{content:"↓";left:8px;top:auto;bottom:-15px}.sarcomere{height:135px}.sarc-metrics{gap:12px;font-size:.85rem}}
+    .guided{grid-template-columns:1.2fr .8fr}.guide-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.gstep{padding:9px 6px;border-radius:10px;border:1px solid var(--line);background:#0b1f34;color:var(--muted);font-size:.84rem}.gstep.active{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 2px #ffd16622}.gstep.done{background:#123e2b;color:#aaf0c2;border-color:var(--good)}.lab-status{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px}.lab-status span{background:#0e2942;padding:7px 10px;border-radius:20px;color:var(--cyan)}.signal-wave{position:absolute;right:4%;top:12px;color:var(--gold);font-size:1.4rem;opacity:0;transform:translateX(30px)}.calcium-cloud{position:absolute;inset:10px 12%;display:flex;justify-content:space-around;align-items:center;color:var(--cyan);font-size:1.15rem;opacity:0}.binding-sites{position:absolute;right:8%;left:8%;top:35px;height:15px;background:radial-gradient(circle,var(--gold) 0 3px,transparent 4px) 0 0/34px 15px;opacity:0}.myosin-heads{position:absolute;right:30%;left:30%;top:49px;height:58px;border-top:4px dashed var(--cyan);border-bottom:4px dashed var(--cyan);opacity:0;transform:skewX(0deg)}.sarcomere.step1 .signal-wave{opacity:1;animation:signal 1s linear infinite}.sarcomere.step2 .calcium-cloud,.sarcomere.step3 .calcium-cloud{opacity:1}.sarcomere.step3 .binding-sites,.sarcomere.step4 .binding-sites,.sarcomere.step5 .binding-sites{opacity:1}.sarcomere.step4 .myosin-heads,.sarcomere.step5 .myosin-heads{opacity:1}.sarcomere.step5 .myosin-heads{transform:skewX(-22deg)}.sarcomere.step6 .myosin-heads{opacity:.18}.sarcomere.step6 .calcium-cloud{opacity:.25}@keyframes signal{0%{transform:translateX(35px)}100%{transform:translateX(-150px)}}.observation{background:#091b2d;border:1px solid var(--line);border-radius:14px;padding:13px;min-height:125px}.observation h3{color:var(--gold);margin-bottom:7px}.science-note{color:#d5e5ef;line-height:1.65}.guide-actions{display:flex;gap:9px;margin-top:12px}.guide-actions button{flex:1}.mini-check{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.mini-check button{margin-top:7px}.lab-complete{color:var(--good);font-weight:bold}
+    @media(max-width:850px){.grid,.mechanism{grid-template-columns:1fr}.top{align-items:flex-start}.progress{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr}.muscle-stage{height:205px}.fiber{width:160px}.bone{width:52px}.metric{gap:12px;font-size:.8rem}.app{padding:12px}.badge{display:none}.hierarchy{grid-template-columns:1fr 1fr}.level:not(:last-child):after{content:"↓";left:8px;top:auto;bottom:-15px}.sarcomere{height:135px}.sarc-metrics{gap:12px;font-size:.85rem}.guide-steps{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
@@ -78,31 +79,26 @@
     </div>
     <p class="zoom-note">تنبيه علمي: القطعة العضلية لا تتكوّن من لُييفات؛ بل اللُّييف العضلي يتكوّن من قطع عضلية متتابعة.</p>
   </section>
-  <section class="mechanism">
+  <section class="mechanism guided">
     <div class="card">
-      <h2>تجربة آلية الانقباض: نموذج الخيوط المنزلقة</h2>
+      <h2>المعمل الموجَّه: كيف تنقبض العضلة؟</h2>
+      <div class="lab-status"><strong id="guideTitle">ابدأ من حالة الارتخاء</strong><span id="guideCount">0 / 6</span></div>
+      <div class="guide-steps">
+        <div class="gstep" data-g="1">1 الإشارة العصبية</div><div class="gstep" data-g="2">2 تحرر Ca²⁺</div><div class="gstep" data-g="3">3 كشف المواقع</div><div class="gstep" data-g="4">4 الجسر العرضي</div><div class="gstep" data-g="5">5 ضربة القوة</div><div class="gstep" data-g="6">6 دور ATP</div>
+      </div>
       <div class="sarc-stage">
         <div class="sarc-title">قطعة عضلية واحدة بين خطّي Z</div>
-        <div class="sarcomere" id="sarcomere" style="width:96%"><div class="actin r"></div><div class="actin l"></div><div class="myosin"></div><div class="bridge"></div></div>
+        <div class="sarcomere" id="sarcomere" style="width:96%"><div class="signal-wave">⚡〰</div><div class="calcium-cloud">● ● ● ● ●</div><div class="binding-sites"></div><div class="actin r"></div><div class="actin l"></div><div class="myosin"></div><div class="myosin-heads"></div><div class="bridge"></div></div>
         <div class="sarc-metrics"><span>طول القطعة: <b id="sarcLength">100%</b></span><span>التداخل: <b id="overlap">منخفض</b></span></div>
       </div>
-      <label for="contract" style="display:flex;justify-content:space-between;margin-top:15px"><strong>درجة التنبيه العصبي</strong><output id="cOut">0%</output></label>
-      <input id="contract" type="range" min="0" max="100" value="0" step="10" style="width:100%;accent-color:var(--cyan)">
+      <div class="guide-actions"><button class="primary" id="nextGuide">نفّذ الخطوة الأولى</button><button class="secondary" id="resetGuide">إعادة من البداية</button></div>
     </div>
     <div class="card mech-controls">
-      <h3>شروط حدوث الانقباض</h3>
-      <div class="switches">
-        <label class="check"><input id="calcium" type="checkbox" checked> أيونات الكالسيوم Ca²⁺ متاحة</label>
-        <label class="check"><input id="atp" type="checkbox" checked> جزيئات ATP متاحة</label>
+      <div class="observation">
+        <h3 id="observeHead">مهمتك</h3>
+        <div class="science-note" id="observeText">راقب خطّي Z والأكتين والميوسين، ثم اضغط «نفّذ الخطوة الأولى».</div>
       </div>
-      <button class="primary" id="contractBtn" style="width:100%">شغّل الانقباض</button>
-      <div class="conclusion" id="mechResult">فعّل الشروط، ثم غيّر درجة التنبيه وشغّل الانقباض.</div>
-      <ol class="sequence">
-        <li>تصل الإشارة العصبية وتتحرر أيونات الكالسيوم.</li>
-        <li>تنكشف مواقع الارتباط على الأكتين، وترتبط بها رؤوس الميوسين.</li>
-        <li>يوفّر ATP الطاقة لدورة الجسور العرضية.</li>
-        <li>ينزلق الأكتين للداخل فتتقارب خطوط Z وتقصر القطعة.</li>
-      </ol>
+      <div class="mini-check"><strong>تحدي التجربة</strong><p>ماذا يحدث إذا لم تتحرر أيونات الكالسيوم؟</p><button class="choice mech-choice" data-ok="0">تزداد سرعة الانقباض</button><button class="choice mech-choice" data-ok="1">تبقى مواقع الارتباط محجوبة فلا يبدأ الانقباض</button><button class="choice mech-choice" data-ok="0">تقصر خيوط الأكتين نفسها</button><div id="guideFeedback" class="conclusion">أكمل الخطوات ثم أجب.</div></div>
     </div>
   </section>
   <p class="footer">المحاكاة نموذج تعليمي مبسّط؛ القيم نسبية وليست قياسات سريرية.</p>
@@ -123,11 +119,19 @@ const types={skeletal:['💪','العضلة الهيكلية',['مخططة وط�
 function typeView(k){const [ic,n,items]=types[k];$('#typePanel').innerHTML=`<div class="type-icon">${ic}</div><strong>${n}</strong><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>`}typeView('skeletal');
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');typeView(b.dataset.type)});
 $$('.choice').forEach(b=>b.onclick=()=>{if($$('.choice').some(x=>x.classList.contains('correct')))return;b.classList.add(b.dataset.answer==='1'?'correct':'wrong');if(b.dataset.answer==='1')show('إجابة صحيحة: العضلة الهيكلية ترتبط بالعظام ويمكن التحكم فيها إراديًا غالبًا.','good');else show('راجع المقارنة: العضلات الملساء والقلبية لا إرادية.','warn')});
-const contract=$('#contract'), sarcomere=$('#sarcomere'), calcium=$('#calcium'), atp=$('#atp');
-contract.oninput=()=>{$('#cOut').textContent=contract.value+'%'};
-$('#contractBtn').onclick=()=>{const requested=+contract.value;if(!calcium.checked&&!atp.checked){$('#mechResult').textContent='لم يحدث انقباض: لا يتوافر الكالسيوم لكشف مواقع الارتباط ولا ATP لإتمام دورة الجسور العرضية.';return}if(!calcium.checked){$('#mechResult').textContent='لم يحدث انقباض: يلزم Ca²⁺ لكشف مواقع ارتباط الميوسين على الأكتين.';return}if(!atp.checked){$('#mechResult').textContent='تتعطل دورة الجسور العرضية: يلزم ATP لفصل رأس الميوسين وإعادة تهيئته لدورة جديدة.';return}if(requested===0){$('#mechResult').textContent='ارفع درجة التنبيه لتبدأ المحاكاة.';return}const c=requested/100;sarcomere.style.setProperty('--c',c);$('#sarcLength').textContent=Math.round(100-c*28)+'%';$('#overlap').textContent=c<.35?'منخفض':c<.75?'متوسط':'مرتفع';$('#mechResult').textContent='انزلقت خيوط الأكتين فوق الميوسين، فزاد التداخل وتقارب خطّا Z وقصرت القطعة العضلية، بينما بقي طول الخيوط نفسها ثابتًا.'};
-$('#contractBtn').addEventListener('click',()=>{if(calcium.checked&&atp.checked&&+contract.value>0)sarcomere.style.width=(96-(+contract.value/100)*28)+'%'});
-[calcium,atp].forEach(x=>x.onchange=()=>{if(!x.checked){sarcomere.style.setProperty('--c',0);sarcomere.style.width='96%';$('#sarcLength').textContent='100%';$('#overlap').textContent='منخفض'}});
+const sarcomere=$('#sarcomere'); let guideStep=0;
+const guideData=[
+ ['حالة الارتخاء','الأكتين والميوسين متداخلان جزئيًا، وخطّا Z متباعدان.'],
+ ['1 — وصول الإشارة العصبية','تصل الإشارة إلى الليفة العضلية فتبدأ سلسلة الاستجابة داخلها.'],
+ ['2 — تحرر أيونات الكالسيوم','تُطلق الشبكة الساركوبلازمية Ca²⁺ داخل الليفة العضلية.'],
+ ['3 — كشف مواقع الارتباط','يرتبط Ca²⁺ بالتروبونين، فيتحرك التروبوميوسين وتنكشف مواقع الارتباط على الأكتين.'],
+ ['4 — تكوين الجسر العرضي','ترتبط رؤوس الميوسين بالمواقع المكشوفة على الأكتين.'],
+ ['5 — ضربة القوة','تنثني رؤوس الميوسين وتسحب الأكتين نحو مركز القطعة؛ يتقارب خطّا Z ويزداد التداخل، لكن الخيوط لا تقصر.'],
+ ['6 — دور ATP وتكرار الدورة','يرتبط ATP برأس الميوسين فيفصله عن الأكتين، ثم يزوّده بالطاقة ليستعد لدورة جديدة. عند توقف الإشارة يعود Ca²⁺ إلى مخزنه فترتخي العضلة.']
+];
+function renderGuide(){sarcomere.className='sarcomere'+(guideStep?' step'+guideStep:'');$$('.gstep').forEach((x,i)=>{x.classList.toggle('active',i+1===guideStep);x.classList.toggle('done',i+1<guideStep)});$('#guideTitle').textContent=guideData[guideStep][0];$('#observeHead').textContent=guideStep?'ماذا حدث؟':'مهمتك';$('#observeText').textContent=guideData[guideStep][1];$('#guideCount').textContent=guideStep+' / 6';const pull=guideStep===5; sarcomere.style.width=pull?'70%':'96%';sarcomere.style.setProperty('--c',pull?1:0);$('#sarcLength').textContent=pull?'72%':'100%';$('#overlap').textContent=pull?'مرتفع':'منخفض';$('#nextGuide').textContent=guideStep===6?'اكتملت الدورة ✓':'نفّذ الخطوة '+(guideStep+1);$('#nextGuide').disabled=guideStep===6;if(guideStep===6)$('#observeHead').classList.add('lab-complete');else $('#observeHead').classList.remove('lab-complete')}
+$('#nextGuide').onclick=()=>{if(guideStep<6){guideStep++;renderGuide()}};$('#resetGuide').onclick=()=>{guideStep=0;renderGuide();$$('.mech-choice').forEach(x=>x.classList.remove('correct','wrong'));$('#guideFeedback').textContent='أكمل الخطوات ثم أجب.'};
+$$('.mech-choice').forEach(b=>b.onclick=()=>{if(guideStep<3){$('#guideFeedback').textContent='نفّذ الخطوات الثلاث الأولى قبل الإجابة.';return}$$('.mech-choice').forEach(x=>x.classList.remove('correct','wrong'));b.classList.add(b.dataset.ok==='1'?'correct':'wrong');$('#guideFeedback').textContent=b.dataset.ok==='1'?'صحيح: من دون Ca²⁺ يبقى التروبوميوسين حاجبًا مواقع الارتباط، فلا تتكون الجسور العرضية.':'جرّب مرة أخرى وراجع الخطوتين 2 و3.'});renderGuide();
 const instructions=['اكتب فرضيتك أولًا: ماذا تتوقع أن يحدث لقوة الانقباض عندما تزداد شدة المنبّه؟','غيّر شدة المنبّه أو تكراره، ثم طبّق المنبّه وسجّل ثلاث محاولات.','قارن نتائجك: ما المتغير الذي رفع قوة الانقباض؟ هل ظهر نمط ثابت؟','اختبر التعب العضلي، ثم صغ استنتاجًا يربط التكرار بالطاقة والأداء.'];
 function setStep(n){$$('.step').forEach((s,i)=>{s.classList.toggle('active',i===n);s.classList.toggle('done',i<n)});$('#instruction').textContent=instructions[n]}
 $$('.step').forEach(b=>b.onclick=()=>setStep(+b.dataset.go));update();
